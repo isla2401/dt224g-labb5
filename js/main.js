@@ -33,11 +33,33 @@ let history = [];
  * @returns {boolean}
  */
 function validateForm() {
+    // Rensa array med felmeddelanden
+    errors = [];
+
+    // Variabel som håller koll på om någon input är fel
+    let validate = true;
+
     // Kontrollera formulärets obligatoriska fält
+    if (fullnameInput.value.trim() === "") {
+        errors.push("Du måste ange ditt fullständiga namn");
+        validate = false;
+    }
+    if (emailInput.value.trim() === "") {
+        errors.push("Du måste ange din e-postadress");
+        validate = false;
+    }
+    if (phoneInput.value.trim() === "") {
+        errors.push("Du måste ange ditt telefonnummer");
+        validate = false;
+    }
 
     // Visa eventuella felmeddelanden
+    if (validate === false) {
+        displayErrors();
+    }
 
     // Returnera resultatet (true eller false) av valideringen
+    return validate;
 }
 
 
@@ -46,8 +68,14 @@ function validateForm() {
  */
 function displayErrors() {
     // Rensa tidigare felmeddelanden
+    errorList.innerHTML = "";
 
     // Skriv ut aktuella felmeddelanden till DOM
+    errors.forEach(error => {
+        const liEl = document.createElement("li");
+        liEl.textContent = error;
+        errorList.appendChild(liEl);
+    });
 }
 
 
