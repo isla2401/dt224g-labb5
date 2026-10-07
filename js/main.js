@@ -167,7 +167,7 @@ function renderHistory() {
 
 
 /**
- * Rensar formulär, aktuellt studentkort och felmeddelanden.
+ * Rensar formulär och felmeddelanden.
  */
 function clearForm() {
     // Återställ formulär
@@ -175,16 +175,6 @@ function clearForm() {
     emailInput.value = "";
     phoneInput.value = "";
     fontSelect.value = "Georgia";
-
-    // Återställ text på studentkort    
-    previewFullname.textContent = "Namn";
-    previewEmail.textContent = "E-post";   
-    previewPhone.textContent = "Telefon";
-
-    // Återställ font på studentkort
-    previewElements.forEach(element => {
-        element.style.fontFamily = "inherit";
-    });
 
     // Rensa eventuella felmeddelanden
     errors = [];
