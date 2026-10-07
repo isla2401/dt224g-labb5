@@ -206,5 +206,9 @@ form.addEventListener("submit", (event) => {
 // När användaren klickar på "Radera historik"
 
 
-// När sidan laddas:
-// - läs in och visa eventuell tidigare historik
+// När sidan laddas
+document.addEventListener("DOMContentLoaded", () => {
+    // läs in och visa eventuell tidigare historik
+    loadHistory();
+    renderHistory();
+})
