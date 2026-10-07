@@ -99,7 +99,7 @@ function createStudentCard() {
     });
     
     // Lägg till studentkortet i historiken
-    history.unshift(JSON.stringify(studentCard));
+    history.unshift(studentCard);
 
     // Spara och uppdatera historiken
     renderHistory();
@@ -141,10 +141,10 @@ function renderHistory() {
         const fontEl = document.createElement("p");
 
         // Skapa texten för studentkortet
-        fullnameEl.textContent = `Namn: ${JSON.parse(studentCard).fullname}`;
-        emailEl.textContent = `Email: ${JSON.parse(studentCard).email}`;
-        phoneEl.textContent = `Telefon: ${JSON.parse(studentCard).phone}`;
-        fontEl.textContent = `Font: ${JSON.parse(studentCard).font}`;
+        fullnameEl.textContent = `Namn: ${studentCard.fullname}`;
+        emailEl.textContent = `Email: ${studentCard.email}`;
+        phoneEl.textContent = `Telefon: ${studentCard.phone}`;
+        fontEl.textContent = `Font: ${studentCard.font}`;
 
         // Lägg in texten i studentkortet
         articleEl.appendChild(fullnameEl);
