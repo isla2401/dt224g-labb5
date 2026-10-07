@@ -55,9 +55,7 @@ function validateForm() {
     }
 
     // Visa eventuella felmeddelanden
-    if (validate === false) {
-        displayErrors();
-    }
+    displayErrors();
 
     // Returnera resultatet (true eller false) av valideringen
     return validate;
