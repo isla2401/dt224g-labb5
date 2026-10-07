@@ -102,6 +102,7 @@ function createStudentCard() {
     history.unshift(studentCard);
 
     // Spara och uppdatera historiken
+    saveHistory();
     renderHistory();
 }
 
@@ -111,6 +112,7 @@ function createStudentCard() {
  */
 function saveHistory() {
     // Spara history i localStorage
+    localStorage.setItem("history", JSON.stringify(history));
 }
 
 
@@ -118,9 +120,10 @@ function saveHistory() {
  * Läser in tidigare historik från localStorage.
  */
 function loadHistory() {
-    // Hämta eventuell sparad historik
-
-    // Uppdatera history
+    // Hämta eventuell sparad historik och uppdatera history
+    if (localStorage.getItem("history") !== null) {
+        history = JSON.parse(localStorage.getItem("history"));
+    }
 }
 
 
@@ -186,7 +189,7 @@ function deleteHistory() {
 // Eventlyssnare
 
 // När formuläret skickas
-form.addEventListener("submit", (event) =>{
+form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     // Validera inmatningen och skapa studentkort om valideringen lyckas
