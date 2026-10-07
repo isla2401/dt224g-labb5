@@ -164,10 +164,7 @@ function renderHistory() {
  */
 function clearForm() {
 	// Återställ formulär
-	fullnameInput.value = "";
-	emailInput.value = "";
-	phoneInput.value = "";
-	fontSelect.value = "Georgia";
+	form.reset();
 
 	// Rensa eventuella felmeddelanden
 	errors = [];
