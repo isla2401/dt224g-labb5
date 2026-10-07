@@ -37,28 +37,26 @@ function validateForm() {
     // Rensa array med felmeddelanden
     errors = [];
 
-    // Variabel som håller koll på om någon input är fel
-    let validate = true;
-
     // Kontrollera formulärets obligatoriska fält
     if (fullnameInput.value.trim() === "") {
         errors.push("Du måste ange ditt fullständiga namn");
-        validate = false;
     }
     if (emailInput.value.trim() === "") {
         errors.push("Du måste ange din e-postadress");
-        validate = false;
     }
     if (phoneInput.value.trim() === "") {
         errors.push("Du måste ange ditt telefonnummer");
-        validate = false;
     }
 
     // Visa eventuella felmeddelanden
     displayErrors();
 
     // Returnera resultatet (true eller false) av valideringen
-    return validate;
+    if (errors.length === 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 
@@ -82,20 +80,22 @@ function displayErrors() {
  * Skapar ett studentkort och visar det på sidan.
  */
 function createStudentCard() {
-    // Hämta information från formuläret
-    const fullname = fullnameInput.value;
-    const email = emailInput.value;
-    const phone = phoneInput.value;
-    const font = fontSelect.value;
+    // Skapa ett objekt för studentkortet med information från formuläret
+    const studentCard = {
+        fullname: fullnameInput.value,
+        email: emailInput.value,
+        phone: phoneInput.value,
+        font: fontSelect.value
+    };
     
-    // Uppdatera information på studentkortet
-    previewFullname.textContent = fullname;
-    previewEmail.textContent = email;
-    previewPhone.textContent = phone;
+    // Uppdatera förhandsvisningen av studentkortet
+    previewFullname.textContent = studentCard.fullname;
+    previewEmail.textContent = studentCard.email;
+    previewPhone.textContent = studentCard.phone;
 
-    // Ändra font på studentkortet
+    // Uppdatera font på förhandsvisningen
     previewElements.forEach(element => {
-        element.style.fontFamily = font;
+        element.style.fontFamily = studentCard.font;
     });
     
     // Lägg till studentkortet i historiken
