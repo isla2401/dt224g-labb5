@@ -13,6 +13,7 @@ const emailInput = document.querySelector("#email");
 const phoneInput = document.querySelector("#phone");
 const fontSelect = document.querySelector("#font");
 
+const previewElements = document.querySelectorAll(".card-info");
 const previewFullname = document.querySelector("#previewfullname");
 const previewEmail = document.querySelector("#previewemail");
 const previewPhone = document.querySelector("#previewphone");
@@ -84,9 +85,21 @@ function displayErrors() {
  */
 function createStudentCard() {
     // Hämta information från formuläret
+    const fullname = fullnameInput.value;
+    const email = emailInput.value;
+    const phone = phoneInput.value;
+    const font = fontSelect.value;
+    
+    // Uppdatera information på studentkortet
+    previewFullname.textContent = fullname;
+    previewEmail.textContent = email;
+    previewPhone.textContent = phone;
 
-    // Uppdatera studentkortet
-
+    // Ändra font på studentkortet
+    previewElements.forEach(element => {
+        element.style.fontFamily = font;
+    });
+    
     // Lägg till studentkortet i historiken
 
     // Spara och uppdatera historiken
@@ -143,12 +156,15 @@ function deleteHistory() {
 
 // Eventlyssnare
 
-// När formuläret skickas:
-// - validera inmatningen
-// - skapa studentkort om valideringen lyckas
+// När formuläret skickas
 form.addEventListener("submit", (event) =>{
     event.preventDefault();
-    validateForm();
+
+    // Validera inmatningen och skapa studentkort om valideringen lyckas
+    if (validateForm()) {
+        createStudentCard();
+    }
+    
 })
 
 
